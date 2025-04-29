@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Log;
 
 class ApiResponseClass
 {
-    public static function rollback($e, $message = "Error...")
+    public static function rollback($e, $message = "Server error ...")
     {
         DB::rollBack();
         self::throw($e, $message);
     }
 
-    public static function throw($e, $message = "Error 500 ...")
+    public static function throw($e, $message = "Server error ...")
     {
         Log::info($e);
         throw new HttpResponseException(response()->json(["message" => $message], 500));

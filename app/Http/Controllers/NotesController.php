@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Classes\ApiResponseClass;
-use App\Models\Notes;
 use App\Http\Requests\StoreNotesRequest;
 use App\Http\Requests\UpdateNotesRequest;
 use App\Http\Resources\NotesResource;
