@@ -25,7 +25,7 @@ class NotesController extends Controller
     public function store(StoreNotesRequest $request)
     {
         $data = [
-            'by' => $request->by,
+            'by' => $request->user()->name,
             'title' => $request->title,
             'note' => $request->note
         ];
@@ -49,7 +49,7 @@ class NotesController extends Controller
     public function update(UpdateNotesRequest $request, $id)
     {
         $updateDetails = [
-            'by' => $request->by,
+            'by' => $request->user()->name,
             'title' => $request->title,
             'note' => $request->note
         ];

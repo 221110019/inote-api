@@ -28,7 +28,7 @@ class TasksController extends Controller
     public function store(StoreTasksRequest $request)
     {
         $details = [
-            'by' => $request->by,
+            'by' => $request->user()->name,
             'title' => $request->title,
             'category' => $request->category,
             'task_items' => $request->task_items,
@@ -55,7 +55,7 @@ class TasksController extends Controller
     public function update(UpdateTasksRequest $request, $id)
     {
         $updateDetails = [
-            'by' => $request->by,
+            'by' => $request->user()->name,
             'title' => $request->title,
             'category' => $request->category,
             'task_items' => $request->task_items,

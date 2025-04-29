@@ -21,7 +21,6 @@ class UpdateTasksRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'by' => 'required',
             'title' => 'required',
             'category' => 'required'
         ];
@@ -30,7 +29,7 @@ class UpdateTasksRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'success'   => false,
-            'message'   => 'Validation errors',
+            'message'   => 'Mohon isi semua kolom task',
             'data'      => $validator->errors()
         ]));
     }

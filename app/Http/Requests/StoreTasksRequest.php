@@ -19,7 +19,6 @@ class StoreTasksRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'by' => 'required',
             'title' => 'required',
             'category' => 'required'
         ];

@@ -21,7 +21,6 @@ class StoreNotesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'by' => 'required',
             'title' => 'required',
             'note' => 'required',
         ];
