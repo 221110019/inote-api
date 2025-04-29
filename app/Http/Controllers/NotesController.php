@@ -2,65 +2,71 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\ApiResponseClass;
 use App\Models\Notes;
 use App\Http\Requests\StoreNotesRequest;
 use App\Http\Requests\UpdateNotesRequest;
+use App\Http\Resources\NotesResource;
+use App\Interfaces\NotesRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class NotesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private NotesRepositoryInterface $notesRepositoryInterface;
+    public function __construct(NotesRepositoryInterface $notesRepositoryInterface)
+    {
+        $this->notesRepositoryInterface = $notesRepositoryInterface;
+    }
     public function index()
     {
-        //
+        $data = $this->notesRepositoryInterface->index();
+        return ApiResponseClass::sendResponse(NotesResource::collection($data), '', 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreNotesRequest $request)
     {
-        //
+        $data = [
+            'by' => $request->by,
+            'title' => $request->title,
+            'note' => $request->note
+        ];
+        DB::beginTransaction();
+        try {
+            $notes = $this->notesRepositoryInterface->store($data);
+            DB::commit();
+            return ApiResponseClass::sendResponse(new NotesResource($notes), 'Note created ...', 201);
+        } catch (\Exception $ex) {
+            return ApiResponseClass::rollback($ex);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Notes $notes)
+    public function show($id)
     {
-        //
+        $notes = $this->notesRepositoryInterface->getById($id);
+
+        return ApiResponseClass::sendResponse(new NotesResource($notes), '', 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Notes $notes)
+    public function update(UpdateNotesRequest $request, $id)
     {
-        //
+        $updateDetails = [
+            'by' => $request->by,
+            'title' => $request->title,
+            'note' => $request->note
+        ];
+        DB::beginTransaction();
+        try {
+            $this->notesRepositoryInterface->update($updateDetails, $id);
+            DB::commit();
+            return ApiResponseClass::sendResponse('Note updated ...', '', 201);
+        } catch (\Exception $ex) {
+            return ApiResponseClass::rollback($ex);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNotesRequest $request, Notes $notes)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Notes $notes)
-    {
-        //
+        $this->notesRepositoryInterface->delete($id);
+        return ApiResponseClass::sendResponse('Note deleted ...', '', 202);
     }
 }
