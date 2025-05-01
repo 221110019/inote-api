@@ -1,1 +1,1 @@
-REST API for inote
+REST API for iNote
