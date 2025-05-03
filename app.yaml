@@ -1,4 +1,4 @@
-runtime: php
+runtime: php82
 env: standard
 runtime_config:
   document_root: public
