@@ -18,7 +18,7 @@ env_variables:
   #  DB_HOST: localhost
   DB_DATABASE: inote_database
   DB_USERNAME: teamtujuh
-  DB_PASSWORD: test1234
+  DB_PASSWORD: qwiklabs-gcp-03-9dd311644e6d
   DB_SOCKET: "/cloudsql/qwiklabs-gcp-03-9dd311644e6d:us-central1:myinstance"
 
   QUEUE_CONNECTION: database
