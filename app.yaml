@@ -3,18 +3,16 @@ env: standard
 runtime_config:
   document_root: public
 
-entrypoint: |
-  cp -r bootstrap/cache /tmp/cache && \
-  php artisan serve --host=0.0.0.0 --port=8080
+entrypoint: serve public/index.php
 
 automatic_scaling:
   max_instances: 1
 env_variables:
   VIEW_COMPILED_PATH: /tmp
-  LOG_CHANNEL: stack
+  LOG_CHANNEL: stderr
   LOG_FILE: /tmp/laravel.log
   APP_ENV: production
-  APP_DEBUG: true
+  APP_DEBUG: false
   APP_KEY: base64:AubOzgN5IG5W4AQ3u9njqpni7Eoyv+SS6J48R4674bs=
   CACHE_DRIVER: file
   SESSION_DRIVER: database
