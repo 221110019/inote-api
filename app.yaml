@@ -3,9 +3,7 @@ env: standard
 runtime_config:
   document_root: .
 
-entrypoint: |
-  mkdir -p /tmp/cache && cp -r bootstrap/cache /tmp/cache && \
-  php artisan serve --host=0.0.0.0 --port=8080
+entrypoint: php artisan serve --host=0.0.0.0 --port=8080
 handlers:
   - url: /(.*\.(gif|png|jpg|css|js))$
     static_files: public/\1
@@ -42,7 +40,8 @@ env_variables:
   DB_USERNAME: root
   DB_PASSWORD: qwiklabs-gcp-00-b5d5912cd172
   DB_SOCKET: "/cloudsql/qwiklabs-gcp-00-b5d5912cd172:us-east1:myinstance"
-
+  DB_HOST: ""
+  DB_PORT: ""
   QUEUE_CONNECTION: sync
   LOG_DELETE: true
   GOOGLE_VISION_PROJECT_ID: project_id
