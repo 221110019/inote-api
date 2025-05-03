@@ -33,6 +33,7 @@
     },
     "scripts": {
         "post-autoload-dump": [
+            "mkdir -p ./bootstrap/cache/",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
@@ -50,7 +51,8 @@
         "post-install-cmd": [
            "Illuminate\\Foundation\\ComposerScripts::postInstall",
            "@php artisan optimize",
-           "chmod -R 755 bootstrap\/cache"
+           "chmod -R 755 bootstrap\/cache",
+           "php artisan cache:clear"
        ]
 
     },
