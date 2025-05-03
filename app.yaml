@@ -40,8 +40,8 @@ env_variables:
   DB_USERNAME: root
   DB_PASSWORD: qwiklabs-gcp-00-b5d5912cd172
   DB_SOCKET: "/cloudsql/qwiklabs-gcp-00-b5d5912cd172:us-east1:myinstance"
-  DB_HOST: ""
-  DB_PORT: ""
+  DB_HOST: null
+  DB_PORT: null
   QUEUE_CONNECTION: sync
   LOG_DELETE: true
   GOOGLE_VISION_PROJECT_ID: project_id
