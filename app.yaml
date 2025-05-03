@@ -24,8 +24,8 @@ env_variables:
   APP_ENV: production
   APP_DEBUG: true
   APP_KEY: base64:AubOzgN5IG5W4AQ3u9njqpni7Eoyv+SS6J48R4674bs=
-  CACHE_DRIVER: file
-  SESSION_DRIVER: file
+  CACHE_DRIVER: database
+  SESSION_DRIVER: database
   APP_STORAGE: /tmp
   APP_LOG: daily
   APP_TIMEZONE: UTC
