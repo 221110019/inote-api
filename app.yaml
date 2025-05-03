@@ -1,11 +1,19 @@
 runtime: php82
 env: standard
 runtime_config:
-  document_root: public
+  document_root: .
 
 entrypoint: |
   cp -r bootstrap/cache /tmp/cache && \
   php artisan serve --host=0.0.0.0 --port=8080
+handlers:
+  - url: /(.*\.(gif|png|jpg|css|js))$
+    static_files: public/\1
+    upload: public/.*\.(gif|png|jpg|css|js)$
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
 
 automatic_scaling:
   max_instances: 1
@@ -18,8 +26,13 @@ env_variables:
   APP_KEY: base64:AubOzgN5IG5W4AQ3u9njqpni7Eoyv+SS6J48R4674bs=
   CACHE_DRIVER: file
   SESSION_DRIVER: database
+  APP_STORAGE: /tmp
   APP_LOG: daily
   APP_TIMEZONE: UTC
+  APP_SERVICES_CACHE: /tmp/services.php
+  APP_PACKAGES_CACHE: /tmp/packages.php
+  APP_CONFIG_CACHE: /tmp/config.php
+  APP_ROUTES_CACHE: /tmp/routes.php
 
   DB_CONNECTION: mysql
   #  DB_HOST: localhost
