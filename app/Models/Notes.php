@@ -10,5 +10,5 @@ class Notes extends Model
     /** @use HasFactory<\Database\Factories\NotesFactory> */
     use HasFactory;
 
-    protected $fillable = ['by', 'title', 'note'];
+    protected $fillable = ['by', 'title', 'category', 'note'];
 }

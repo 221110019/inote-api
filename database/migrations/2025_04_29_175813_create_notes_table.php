@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('by');
             $table->string('title');
+            $table->string('category');
             $table->longText('note');
             $table->timestamps();
         });

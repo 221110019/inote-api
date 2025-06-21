@@ -3,6 +3,7 @@
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GroupsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::get('/my-groups', [UserController::class, 'myGroups']);
 
     Route::post('user/logout', [UserController::class, 'logout'])->name('user.logout');
 
@@ -30,6 +32,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tasks', [TasksController::class, 'store'])->name('tasks.store');
     Route::put('/tasks/{task}', [TasksController::class, 'update'])->name('tasks.update');
     Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->name('tasks.destroy');
+
+    Route::post('/groups', [GroupsController::class, 'createGroup'])->name('groups.create');
+    Route::post('/groups/join', [GroupsController::class, 'joinGroup'])->name('groups.join');
+    Route::put('/groups/{id}', [GroupsController::class, 'editGroup'])->name('groups.edit');
+    Route::delete('/groups/{id}', [GroupsController::class, 'deleteGroup'])->name('groups.delete');
+    Route::post('/groups/{id}/leave', [GroupsController::class, 'leaveGroup'])->name('groups.leave');
 });
 
 // Route::get('/user', function (Request $request) {

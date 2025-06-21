@@ -12,4 +12,8 @@ class Groups extends Model
     protected $casts = [
         'members' => 'array',
     ];
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'group_user', 'group_id', 'user_id');
+    }
 }

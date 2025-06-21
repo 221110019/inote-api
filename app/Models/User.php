@@ -44,4 +44,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function groups()
+    {
+        return $this->belongsToMany(Groups::class, 'group_user', 'user_id', 'group_id');
+    }
 }

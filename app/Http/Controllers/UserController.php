@@ -64,4 +64,13 @@ class UserController extends Controller
         ];
         return response($response);
     }
+    public function myGroups(Request $request)
+    {
+        $user = $request->user();
+        $groups = $user->groups()->get();
+
+        return response()->json([
+            'groups' => $groups
+        ]);
+    }
 }
