@@ -20,7 +20,8 @@ composer install
 
 -   Copy file `.env.example` pada file baru `.env` pada root project
 -   (Optional) Set konfigurasi pada `.env` menyesuaikan MySQL local
--   Jalankan perintah-perintah
+-   Pastikan sudah start Apache dan MySQL pada xampp
+-   Jalankan commands berikut
 
 ```bash
 php artisan key:generate
