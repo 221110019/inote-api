@@ -27,7 +27,8 @@ class NotesController extends Controller
         $data = [
             'by' => $request->user()->name,
             'title' => $request->title,
-            'note' => $request->note
+            'note' => $request->note,
+            'category' => $request->category
         ];
         DB::beginTransaction();
         try {
@@ -51,7 +52,9 @@ class NotesController extends Controller
         $updateDetails = [
             'by' => $request->user()->name,
             'title' => $request->title,
-            'note' => $request->note
+            'note' => $request->note,
+            'category' => $request->category,
+
         ];
         DB::beginTransaction();
         try {
