@@ -1,4 +1,5 @@
-runtime: php84
+runtime: php83
+
 env: flex
 runtime_config:
   document_root: public
