@@ -35,7 +35,7 @@ env_variables:
   DB_DATABASE: inote_database
   DB_USERNAME: root
   DB_PASSWORD: "{6*`|:h<YLF3Pn9z"
-  DB_SOCKET: "/cloudsql/us-central1:us-central1:myinstance"
+  DB_SOCKET: "/cloudsql/qwiklabs-gcp-03-8edb74771aee:us-central1:myinstance"
   DB_HOST: 127.0.0.1
   DB_PORT: 3306
   QUEUE_CONNECTION: sync
@@ -43,4 +43,4 @@ env_variables:
   GOOGLE_VISION_PROJECT_ID: project_id
 
 beta_settings:
-  cloud_sql_instances: us-central1:us-central1:myinstance
+  cloud_sql_instances: qwiklabs-gcp-03-8edb74771aee:us-central1:myinstance
