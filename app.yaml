@@ -2,13 +2,10 @@ runtime: php82
 env: standard
 runtime_config:
   document_root: public
-
-entrypoint: serve index.php
-
 handlers:
-  - url: /(.*\.(gif|png|jpg|css|js))$
+  - url: /(.*\.(gif|png|jpg|css|js|svg|woff|woff2|ttf|eot))$
     static_files: public/\1
-    upload: public/.*\.(gif|png|jpg|css|js)$
+    upload: public/.*\.(gif|png|jpg|css|js|svg|woff|woff2|ttf|eot)$
   - url: /.*
     script: auto
 
