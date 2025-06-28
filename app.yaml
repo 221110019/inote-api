@@ -1,23 +1,20 @@
 runtime: php82
 env: standard
 runtime_config:
-  document_root: .
+  document_root: public
 
-entrypoint: php artisan serve --host=0.0.0.0 --port=8080
+entrypoint: serve index.php
+
 handlers:
   - url: /(.*\.(gif|png|jpg|css|js))$
     static_files: public/\1
     upload: public/.*\.(gif|png|jpg|css|js)$
   - url: /.*
-    secure: always
-    redirect_http_response_code: 301
     script: auto
-health_check:
-  enable_health_check: true
-  check_interval_sec: 30
-  timeout_sec: 10
+
 automatic_scaling:
   max_instances: 1
+
 env_variables:
   VIEW_COMPILED_PATH: /tmp
   LOG_CHANNEL: stderr
@@ -40,10 +37,11 @@ env_variables:
   DB_USERNAME: root
   DB_PASSWORD: "|]_XSsKv#ZG$z)[M"
   DB_SOCKET: "/cloudsql/qwiklabs-gcp-02-55e4c862cd75:us-east4-b:myinstance"
-  DB_HOST: null
-  DB_PORT: null
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
   QUEUE_CONNECTION: sync
   LOG_DELETE: true
   GOOGLE_VISION_PROJECT_ID: project_id
+
 beta_settings:
   cloud_sql_instances: qwiklabs-gcp-02-55e4c862cd75:us-east4-b:myinstance
