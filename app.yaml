@@ -3,8 +3,6 @@ env: standard
 runtime_config:
   document_root: public
 
-entrypoint: serve index.php
-
 handlers:
   - url: /(.*\.(gif|png|jpg|css|js|svg|woff|woff2|ttf|eot))$
     static_files: public/\1
