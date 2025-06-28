@@ -14,13 +14,13 @@ class InoteSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'user_' . Str::random(8),
-            'email' => 'user_' . Str::random(8) . '@test.com',
-            'password' => bcrypt('TestPass123!'),
+            'name' => 'dummy' . Str::random(8),
+            'email' => 'dummy' . Str::random(8) . '@test.com',
+            'password' => bcrypt('passdummy'),
         ]);
 
         $group = Groups::create([
-            'name' => 'group_' . Str::random(8),
+            'name' => 'group_' . Str::random(2),
             'entry_code' => Str::random(6),
             'leader' => $user->id,
         ]);
@@ -38,7 +38,7 @@ class InoteSeeder extends Seeder
 
         Tasks::create([
             'by' => $user->name,
-            'title' => 'Test Task ' . Str::random(5),
+            'title' => 'Test ' . Str::random(5),
             'category' => $group->name,
             'task_items' => json_encode([['item' => 'Do something']]),
         ]);

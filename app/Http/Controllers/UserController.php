@@ -73,10 +73,6 @@ class UserController extends Controller
             'groups' => $groups
         ]);
     }
-
-    /**
-     * Update the authenticated user's username and/or password.
-     */
     public function edit(Request $request)
     {
         $user = $request->user();
@@ -100,33 +96,22 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Delete the authenticated user's account, notes, tasks, and leave all groups.
-     */
     public function delete(Request $request)
     {
         $user = $request->user();
-
-        // Delete user's notes
         if (method_exists($user, 'notes')) {
             $user->notes()->delete();
         } else {
             \App\Models\Notes::where('by', $user->name)->delete();
         }
-
-        // Delete user's tasks
         if (method_exists($user, 'tasks')) {
             $user->tasks()->delete();
         } else {
             \App\Models\Tasks::where('by', $user->name)->delete();
         }
-
-        // Leave all groups (detach from pivot)
         if (method_exists($user, 'groups')) {
             $user->groups()->detach();
         }
-
-        // Delete user account
         $user->tokens()->delete();
         $user->delete();
 

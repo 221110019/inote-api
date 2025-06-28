@@ -17,8 +17,5 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TasksRepositoryInterface::class, TasksRepository::class);
     }
 
-    public function boot(): void
-    {
-        //
-    }
+    public function boot(): void {}
 }

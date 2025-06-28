@@ -5,7 +5,7 @@
     <title>All Tables</title>
     <style>
         body {
-            background: hsl(181, 100%, 82%);
+            background: hsl(231, 76%, 70%);
             font-size: 12px;
         }
 
@@ -16,7 +16,7 @@
 
         th,
         td {
-            border: 1px solid #000000;
+            border: 1px solid #ffffff;
             padding: 8px;
         }
 

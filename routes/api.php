@@ -7,9 +7,9 @@ use App\Http\Controllers\GroupsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length');
-header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+// header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length');
+// header('Access-Control-Allow-Origin: *');
 
 Route::post('user/register', [UserController::class, 'register'])->name('user.register');
 Route::post('user/login', [UserController::class, 'login'])->name('user.login');
@@ -21,7 +21,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::get('/my-groups', [UserController::class, 'myGroups']);
     Route::put('/user/edit', [UserController::class, 'edit']);
     Route::delete('/user/delete', [UserController::class, 'delete']);
     Route::post('user/logout', [UserController::class, 'logout'])->name('user.logout');
@@ -39,18 +38,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/groups/{id}', [GroupsController::class, 'editGroup'])->name('groups.edit');
     Route::delete('/groups/{id}', [GroupsController::class, 'deleteGroup'])->name('groups.delete');
     Route::post('/groups/{id}/leave', [GroupsController::class, 'leaveGroup'])->name('groups.leave');
+    Route::get('/groups', [GroupsController::class, 'index'])->name('groups.index');
+    Route::get('/groups/{id}', [GroupsController::class, 'show'])->name('groups.show');
 });
-
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
-
-// Route::middleware('auth:sanctum')->prefix('user')->group(function () {
-//     Route::post('logout', [UserController::class, 'logout'])->name('user.logout');
-// });
-
-// Route::post('user/register', [UserController::class, 'register'])->name('user.register');
-// Route::post('user/login', [UserController::class, 'login'])->name('user.login');
-
-// Route::apiResource('/notes', NotesController::class);
-// Route::apiResource('/tasks', TasksController::class);
